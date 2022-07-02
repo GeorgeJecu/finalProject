@@ -73,5 +73,5 @@ function slideshowPrev() {
 
 
  function openCart(){
-    window.location = "cart.html";
+    window.location = "https://georgejecu.github.io/finalProject/cart/cart.html";
  }
