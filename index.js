@@ -73,5 +73,5 @@ function slideshowPrev() {
 
 
  function openCart(){
-    window.location = "/finalProject/cart/cart.html";
+    window.location = "/cart/cart.html";
  }
