@@ -11,6 +11,7 @@ function draw(){
     let strh = "";
     let str ="";
     for (let[ i, product] of Object.entries(productList)){
+        console.log(product.image[0]);
         let productImage = product.image[0];
         let productName = product.name;
         let productCategory = product.category;
