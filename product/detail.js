@@ -294,7 +294,7 @@ function addToCart(){
 }
 
 function openCart(){
-    window.location = "/cart/cart.html";
+    window.location.href = "https://georgejecu.github.io/finalProject/cart/cart.html";
  }
 
 
