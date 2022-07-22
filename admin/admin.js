@@ -61,7 +61,7 @@ function newProduct(){
 
     let str = `
     <h1>Add a new Product</h1>
-    <form onsubmit="saveNew(event)">
+    <form name="form" onsubmit="saveNew(event)">
     <label for="name">Name</label>
     <input type="text" id="name">
     <label for="benefits">Benefits</label>
@@ -85,45 +85,98 @@ function newProduct(){
 
     <input type="submit" value="SAVE">
     <input onclick="cancel()" type="button" value="CANCEL">
+    <button onclick = "test()">TEST</button>
 </form>
     `
     document.querySelector(".editForm").innerHTML = str;
 
 }
 
+function confirmation(message){
+    var result = confirm(message);
+    if(result){
+    } else throw "exit"
+}
+
+
 async function saveNew(event){
     event.preventDefault();
 
+    let name = document.querySelector("#name").value;
+    if (name.length == 0){
+        alert("Product has no name! Please fill in all values!")
+        throw "exit";
+    }
     let benefits = document.querySelector("#benefits").value.split("\n");
     let filteredBenefits = benefits.filter(element => {
         return element!=='';
     })
+    if (filteredBenefits.length == 0){
+
+        alert("Product has no benefits! Please fill in all values!")
+ 
+        throw "exit";
+    }
     let category = document.querySelector("#category").value;
+    if (category.length == 0){
+        alert("Product has no category! Please fill in all values!")
+        throw "exit";
+    }
     let flavours = document.querySelector("#flavours").value.split("\n");
     let filteredFlavours = flavours.filter(element => {
         return element!=='';
     })
+    if (filteredFlavours.length == 0){
+        alert("Product has no flavours! Please fill in all values!")
+        throw "exit";
+    }
     let images = document.querySelector("#images").value.split("\n");
     let filteredImages = images.filter(element => {
         return element!=='';
     })
+    if (filteredImages.length == 0){
+        alert("Product has no image! Please fill in all values!")
+        throw "exit";
+    }
 
-    let name = document.querySelector("#name").value;
+
     let prices = document.querySelector("#prices").value.split("\n");
     let filteredPrices = prices.filter(element => {
         return element!=='';
     })
+    if (filteredPrices.length == 0){
+        alert("Product has no price! Please fill in all values!")
+        throw "exit";
+    }
+
+    let unit = document.querySelector("#unit").value.split("\n");
+    let filteredUnit = unit.filter(element => {
+        return element!=='';
+    })
+    if (filteredUnit.length == 0){
+        alert("Product has no unit! Please fill in all values!")
+        throw "exit";
+    }
+
 
     let productOverview = document.querySelector("#productOverview").value.split("\n");
     let filteredProductOverview = productOverview.filter(element => {
         return element!=='';
     })
+    if (filteredProductOverview.length == 0){
+        alert("Product has no overview! Please fill in all values!")
+        throw "exit";
+    }
     let stock = document.querySelector("#stock").value;
+    if (stock.length == 0){
+        alert("Product has no stock! Please fill in all values!")
+        throw "exit";
+    }
     let suggestedUse = document.querySelector("#suggestedUse").value;
-    let unit = document.querySelector("#unit").value.split("\n");
-    let filteredUnit = unit.filter(element => {
-        return element!=='';
-    })
+    if (suggestedUse.length == 0){
+        alert("Product has no suggested use! Please fill in all values!")
+        throw "exit";
+    }
 
     let newProduct = {
         benefits:filteredBenefits,
@@ -138,12 +191,7 @@ async function saveNew(event){
         unit:filteredUnit
     }
 
-    function confirmation(){
-        var result = confirm(`Are you sure you want to save product ${name} ?`);
-        if(result){
-        } else throw "exit"
-    }
-    confirmation();
+    confirmation(`Are you sure you want to save product ${name} ?`);
 
     const response = await fetch(url + ".json", { 
         method: "POST",
@@ -163,12 +211,7 @@ async function saveNew(event){
 }
 
 async function deleteProduct(idx){
-    function confirmation(){
-        var result = confirm(`Are you sure you want to delete this product ?`);
-        if(result){
-        } else throw "exit"
-    }
-    confirmation();
+    confirmation(`Are you sure you want to delete this product ?`);
     const response = await fetch(url + idx + ".json",{
         method: "delete",
     });
@@ -239,47 +282,114 @@ function drawEditForm(idx){
     document.querySelector("#stock").value = stock;
     document.querySelector("#suggestedUse").value = suggestedUse;
     document.querySelector("#unit").value = unit.join("\n");
-    // document.querySelector("form").setAttribute("onsubmit", `save(event,${idx})`)
-
-
-
-
 }
 
 
 async function saveEdit(event, idx){
     event.preventDefault();
 
+    let name = document.querySelector("#name").value;
+    if (name.length == 0){
+
+        alert("Product has no Name! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
+
     let benefits = document.querySelector("#benefits").value.split("\n");
     let filteredBenefits = benefits.filter(element => {
         return element!=='';
     })
+    if (filteredBenefits.length == 0){
+
+        alert("Product has no Benefits! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
     let category = document.querySelector("#category").value;
+    if (category.length == 0){
+
+        alert("Product has no Category! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
     let flavours = document.querySelector("#flavours").value.split("\n");
     let filteredFlavours = flavours.filter(element => {
         return element!=='';
     })
+    if (filteredFlavours.length == 0){
+
+        alert("Product has no Flavour! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
     let images = document.querySelector("#images").value.split("\n");
     let filteredImages = images.filter(element => {
         return element!=='';
     })
+    if (filteredImages.length == 0){
 
-    let name = document.querySelector("#name").value;
+        alert("Product has no Image! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
     let prices = document.querySelector("#prices").value.split("\n");
     let filteredPrices = prices.filter(element => {
         return element!=='';
     })
+    if (filteredPrices.length == 0){
+
+        alert("Product has no Price! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
+    let unit = document.querySelector("#unit").value.split("\n");
+    let filteredUnit = unit.filter(element => {
+        return element!=='';
+    })
+    if (filteredUnit.length == 0){
+
+        alert("Product has no Unit! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
+
+
 
     let productOverview = document.querySelector("#productOverview").value.split("\n");
     let filteredProductOverview = productOverview.filter(element => {
         return element!=='';
     })
+    if (filteredProductOverview.length == 0){
+
+        alert("Product has no Overview! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
     let stock = document.querySelector("#stock").value;
+    if (stock.length == 0){
+
+        alert("Product has no Stock! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
     let suggestedUse = document.querySelector("#suggestedUse").value;
-    let unit = document.querySelector("#unit").value.split("\n");
-    let filteredUnit = unit.filter(element => {
-        return element!=='';
-    })
+    if (suggestedUse.length == 0){
+
+        alert("Product has no Suggested use! Please fill in all values!")
+ 
+        throw "exit";
+    }
+
 
     let productId = {
         benefits:filteredBenefits,
@@ -294,13 +404,7 @@ async function saveEdit(event, idx){
         unit:filteredUnit
     }
 
-
-    function confirmation(){
-        var result = confirm(`Are you sure you want to modify product ${name} ?`);
-        if(result){
-        } else throw "exit"
-    }
-    confirmation();
+    confirmation(`Are you sure you want to modify product ${name} ?`);
 
     const response = await fetch(url + idx + ".json", { 
         method: "put",
@@ -321,12 +425,8 @@ async function saveEdit(event, idx){
 }
 
 function cancel(){
-    function confirmation(){
-        var result = confirm(`Are you sure you want to exit? Any unsaved changes will be lost!`);
-        if(result){
-        } else throw "exit"
-    }
-    confirmation();
+
+    confirmation(`Are you sure you want to exit? Any unsaved changes will be lost!`);
 
     document.querySelector(".editForm").classList.add("hidden");
     document.querySelector(".productArea").classList.remove("hidden");

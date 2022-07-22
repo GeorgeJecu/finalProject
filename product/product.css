@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-image: url(https://firebasestorage.googleapis.com/v0/b/fixedfitnesswebsite.appspot.com/o/navImg%2Fbackground.jpg?alt=media&token=ffad134b-e5d5-420c-907a-df0a750a73c5);
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/fixedfitnesswebsite.appspot.com/o/navImg%2Fbackground.jpg?alt=media&token=d30e2ae9-52af-461e-bcac-a2bce8572fa1);
     background-size: contain;
 }
 
@@ -16,12 +16,12 @@ body {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); */
-    width: 1200px;
+    max-width: 1200px;
     min-height: 100%;
 }
 
 nav {
-    z-index: 5;
+    /* z-index: 5; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -29,7 +29,7 @@ nav {
     background-color: #24272b;
     position: sticky;
     top: 0;
-    width: 1200px;
+    max-width: 100%;
 }
 
 #logoArea > a{
@@ -127,7 +127,13 @@ button:hover{
     /* sadjk */
 }
 
+.productList > a{
+    text-decoration: none;
+}
+
 .productCard {
+    transition: 1s;
+    transition-timing-function: ease;
     background-color: white;
     /* border: 1px solid  #24272b; */
     border-radius: 10px;
@@ -136,12 +142,21 @@ button:hover{
     box-shadow: 10px 15px 20px 20px #3e3f41;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
+
+}
+
+.productCard:hover{
+    margin: -10px;
+    transition: 1s;
+    transition-timing-function: ease;
+    box-shadow: 20px 30px 40px 40px #3e3f41;
 
 }
 
 .productImage {
     border-radius: 10px;
-    background-image: url(https://firebasestorage.googleapis.com/v0/b/fixedfitnesswebsite.appspot.com/o/navImg%2Fbackground.jpg?alt=media&token=ffad134b-e5d5-420c-907a-df0a750a73c5);
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/fixedfitnesswebsite.appspot.com/o/navImg%2Fbackground.jpg?alt=media&token=d30e2ae9-52af-461e-bcac-a2bce8572fa1);
     background-size: cover;
 }
 
@@ -163,6 +178,9 @@ button:hover{
     color: #303030;
     text-align: center;
 }
+.title{
+    font-weight: 600;
+}
 
 .description {
     margin-top: 10px;
@@ -175,18 +193,23 @@ button:hover{
     margin: -1.2em;
     margin-top: 5px;
     border: none;
-    background-color: #303030;
+    /* background-color: #303030; */
+    background-image: linear-gradient(to right, #1f1f1f, #414141);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    color: white;
+    /* font-size: 15px; */
+    font-weight: 600;
+
 }
 
-.productCard button > a {
+/* .productCard button > a {
     font-weight: bold;
     font-size: 20px;
     text-decoration: none;
     color: white;
     width: 100%;
-}
+} */
 
 
 

@@ -1,4 +1,5 @@
-// slideshow Code
+let productList = {};
+let url = "https://fixedfitnesswebsite-default-rtdb.europe-west1.firebasedatabase.app/"
 
 let imgStr = ["https://firebasestorage.googleapis.com/v0/b/fixedfitnesswebsite.appspot.com/o/slideshow%2Fslide0.jpg?alt=media&token=3551e2a0-2549-40ca-af0d-c2622b1419d9",
             "https://firebasestorage.googleapis.com/v0/b/fixedfitnesswebsite.appspot.com/o/slideshow%2Fslide1.jpg?alt=media&token=627a8f0e-c039-483c-8419-917c07da409d",
@@ -7,8 +8,61 @@ let imgStr = ["https://firebasestorage.googleapis.com/v0/b/fixedfitnesswebsite.a
 
 let idx = 1;
 
+async function getList() {
 
-setInterval(slideshowNext, 4000);
+    const response = await fetch(url + ".json");
+    productList = await response.json();
+
+    getNewProduct();
+}
+
+function getNewProduct(){
+    for (let [i, product] of Object.entries(productList)){
+        let productImage = product.image[0];
+        let productName = product.name;
+        let productPrice = product.price[0];
+
+        // document.querySelector(".productImage").innerHTML = `<img src=${productImage} alt="Product image">`;
+        // document.querySelector(".title").innerHTML=`${productName}`;
+        // document.querySelector(".price").innerHTML=`$${productPrice}`;
+
+        str = `<a href=/finalProject/product/detail.html?id=${i}>
+        <div class="productCard">
+        <div class="message">NEW ENTRY!</div>
+            <div class="productImage">
+                <img src=${productImage} alt="Product image">
+            </div>
+            <div class="productInfo">
+                <span class="title">${productName}</span>
+                <span class="price">$${productPrice}</span>
+            </div>
+            <button>VIEW DETAILS</button>
+        </div>
+                </a>`
+
+            document.querySelector(".row2").innerHTML+=str;
+
+
+        throw "exit";
+
+
+    }
+
+
+}
+function toggleMenu(){
+    let responsiveNav = document.querySelector(".responsiveNav");
+    if (responsiveNav.classList.contains("hidden")){
+        responsiveNav.classList.remove("hidden")
+    }else{
+        responsiveNav.classList.add("hidden")
+
+    }
+}
+
+
+
+// setInterval(slideshowNext, 4000);
  
 function slideshowNext() {
 
@@ -23,7 +77,7 @@ function slideshowNext() {
 
     let str = `
 
-    <div class="slide fade">
+    <div class="slide slideIn">
         <img class="slideshowImage" src=${imgStr[idx]} alt="">`
     let slideshow = document.querySelector(".slideArea");
     slideshow.innerHTML = str;
@@ -51,7 +105,7 @@ function slideshowPrev() {
 
     let str = `
 
-    <div class="slide fade">
+    <div class="slide slideOut">
         <img class="slideshowImage" src=${imgStr[idx-1]} alt="">
 `
     let slideshow = document.querySelector(".slideArea");

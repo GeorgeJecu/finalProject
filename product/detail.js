@@ -14,6 +14,8 @@ async function getList() {
 }
 
 function draw(){
+    document.querySelector("title").innerHTML = product.name;
+
     let str="";
     str = `<img class="slideshowImage fade" src="${product.image[0]}" alt="">
     `
@@ -53,7 +55,6 @@ function draw(){
     document.querySelector("#suggestedUse").innerHTML = str;
 
     document.querySelector("#productTitle").innerHTML = product.name;
-
     str = `<span class="row">
             <img src="https://firebasestorage.googleapis.com/v0/b/fixedfitnesswebsite.appspot.com/o/navImg%2Ftick.svg?alt=media&token=514b9f5b-b1c7-4703-a0a3-0124ced119fd" alt=""> 
             <span>${product.category}</span>    
@@ -120,12 +121,6 @@ function decrement(){
         document.querySelector("[name='quantity']").value = total;
     }
 
-}
-
-function confirmation(message){
-    var result = confirm(message);
-    if(result){
-    } else throw "exit"
 }
 
 
@@ -202,10 +197,6 @@ function validate() {
 function calcPrice(){
     validate();
     let select = document.querySelector("#select").value;
-
-   
-
-    // let idx = select;
 
     prc = select*1;
 
@@ -291,6 +282,25 @@ function addToCart(){
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+
+    cartConfirmation()
+}
+
+function cartConfirmation(){
+    document.querySelector(".confirmation").classList.remove("fadeOut");
+    document.querySelector(".confirmation").classList.remove("noOpacity");
+    document.querySelector(".confirmation").classList.add("fadeIn");
+    setTimeout(
+        function(){
+            document.querySelector(".confirmation").classList.remove("fadeIn");
+            document.querySelector(".confirmation").classList.add("fadeOut");
+        }, 4000);
+
+    setTimeout(
+        function(){
+            document.querySelector(".confirmation").classList.add("noOpacity");
+        }, 5500);
+
 }
 
 function openCart(){
